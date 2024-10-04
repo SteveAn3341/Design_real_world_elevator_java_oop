@@ -2,51 +2,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Elevator elevator = new Elevator(8);
-        User user = new User(0);
-        Scanner in = new Scanner(System.in);
+        Elevator elevator = new Elevator(8); // 8 floors
+        User user1 = new User(1); // User 1 starts on the 1st floor
+        User user2 = new User(3); // User 2 starts on the 3rd floor
+        User user3 = new User(5); // User 3 starts on the 5th floor
+        Scanner scanner = new Scanner(System.in);
 
+        // Simulating User 1 requesting to go up to floor 4
+        user1.requestElevator(elevator, 4, true);
 
+        // Simulating User 2 requesting to go down to floor 2
+        user2.requestElevator(elevator, 2, false);
 
+        // Simulating User 3 requesting to go up to floor 6
+        user3.requestElevator(elevator, 6, true);
 
-        while (true) {
-
-            System.out.println("welcome to the elevator simulation" );
-            System.out.println("please enter a number to go to the destination floor");
-            System.out.println("your current floor is" + "  " + elevator.getCurrentFloor());
-            System.out.println("1.moveUp");
-            System.out.println("2.moveDown");
-            System.out.println("3.moveToDestination");
-            System.out.println("4.exit");
-            String n = in.nextLine();
-
-            switch (n) {
-                case "1":
-                    elevator.moveUp();
-                    user.requestElevator(elevator, elevator.getCurrentFloor());
-                    break;
-                case "2":
-                    elevator.moveDown();
-                    user.requestElevator(elevator, elevator.getCurrentFloor());
-                    break;
-                case "3":
-                    System.out.print("Enter the floor you want to go to (1-8): ");
-                    int desiredFloor = Integer.parseInt(in.nextLine()) - 1;
-                    if (desiredFloor >= 0 && desiredFloor < 8) { // Check range
-                        user.requestElevator(elevator, desiredFloor);
-                    } else {
-                        System.out.println("Invalid floor number. Please enter a floor between 1 and 8.");
-                    }
-                    break;
-                case "4":
-                    System.out.println("Exiting the Elevator Simulation. Goodbye!");
-                    in.close();
-                    return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-            }
-
-
-        }
+        // Close the scanner
+        scanner.close();
     }
 }
