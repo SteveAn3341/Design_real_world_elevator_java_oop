@@ -1,23 +1,25 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Elevator elevator = new Elevator(8); // 8 floors
-        User user1 = new User(1); // User 1 starts on the 1st floor
-        User user2 = new User(3); // User 2 starts on the 3rd floor
-        User user3 = new User(5); // User 3 starts on the 5th floor
-        Scanner scanner = new Scanner(System.in);
+        Elevator elevator = new Elevator(10);  // 10-floor building
 
-        // Simulating User 1 requesting to go up to floor 4
-        user1.requestElevator(elevator, 4, true);
+        // Create users
+        User alice = new User("Alice", 5, 8);
+        User bob = new User("Bob", 3, 7);
+        User charlie = new User("Charlie", 7, 2);
+        User david = new User("David", 1, 0);
+        User eve = new User("Eve", 8, 9);
 
-        // Simulating User 2 requesting to go down to floor 2
-        user2.requestElevator(elevator, 2, false);
+        // Scenario: Elevator starts at ground floor (0)
+        System.out.println("Initial floor: " + elevator.getCurrentFloor());
 
-        // Simulating User 3 requesting to go up to floor 6
-        user3.requestElevator(elevator, 6, true);
+        // Users request the elevator
+        alice.requestElevator(elevator);
+        bob.requestElevator(elevator);
+        charlie.requestElevator(elevator);
+        david.requestElevator(elevator);
+        eve.requestElevator(elevator);
 
-        // Close the scanner
-        scanner.close();
+        // Process all requests after they've been queued
+        elevator.processAllRequests();
     }
 }
